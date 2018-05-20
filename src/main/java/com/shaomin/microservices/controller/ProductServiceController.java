@@ -28,6 +28,13 @@ public class ProductServiceController {
 				() -> new ProductNotFoundException(String.format("Product not found for id: %s", productId)));
 	}
 
+	@RequestMapping(value = "/string/{id}", method = RequestMethod.GET)
+	public String getProductString(@PathVariable("id") Long productId) {
+		return productService.getProduct(productId)
+				.map(p -> String.format("%s|%s|%s", p.getId(), p.getName(), p.getPrice()))
+				.orElseThrow(() -> new ProductNotFoundException(String.format("Product not found for id: %s", productId)));
+	}
+
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public List<Product> getProducts(@RequestParam("ids") long[] ids) {
 		//http://localhost:8080/product-data/products?ids=1,2

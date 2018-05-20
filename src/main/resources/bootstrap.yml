@@ -1,6 +1,6 @@
 spring:
   application:
-    name: productdata
+    name: product-data
   profiles:
     active: default
   cloud:
